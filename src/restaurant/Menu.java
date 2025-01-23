@@ -3,7 +3,7 @@ package restaurant;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Menu extends MenuItem{
+public class Menu extends MenuItem {
 
     // 필드
     private String category;                     // 메뉴 종류
@@ -15,12 +15,23 @@ public class Menu extends MenuItem{
                 String category, List<Customization> customizations) {
         super(itemName, itemPrice);
         this.category = category;
-        // null일 경우를 대비해 다르게 바인딩
+        // customizations이 null일 경우를 대비해 다르게 바인딩
         this.customizations = (customizations != null) ? customizations : new ArrayList<>();
     }
 
 
     // 메소드
+    public int getMenuPrice() {
+        int menuPrice = 0;
+        menuPrice += super.getItemPrice();
+
+        for(Customization customization : customizations){
+            menuPrice += customization.getItemPrice();
+        }
+
+        return menuPrice;
+    }
+
     public String getCategory() {
         return category;
     }
