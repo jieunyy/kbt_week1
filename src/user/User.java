@@ -1,6 +1,7 @@
 package user;
 
 public class User {
+
     // 필드
 
 

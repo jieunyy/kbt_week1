@@ -1,6 +1,7 @@
 package user;
 
 public class Owner {
+
     // 필드
 
 
