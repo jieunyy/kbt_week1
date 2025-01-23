@@ -7,7 +7,7 @@ public class Restaurant {
     // 필드
     private String rName;         // 식당 이름
     private String rLocation;     // 식당 위치
-    private String rCategory;     // 식당 메뉴(양식, 한식 등)
+    private String rCategory;     // 식당 종류(양식, 한식 등)
     private double rRate;         // 식당 평점
     private int rDeliveryFee;     // 배달료
     private int rMinOrderAmount;  // 최소 주문 금액
@@ -17,7 +17,7 @@ public class Restaurant {
 
     // 생성자
     public Restaurant(String rName, String rLocation, String rCategory, double rRate,
-               int rDeliveryFee, int rMinOrderAmount, int rDeliveryTime, List<Menu> menuList) {
+               int rDeliveryFee, int rMinOrderAmount, int rDeliveryTime) {
         this.rName = rName;
         this.rLocation = rLocation;
         this.rCategory = rCategory;
@@ -25,11 +25,13 @@ public class Restaurant {
         this.rDeliveryFee = rDeliveryFee;
         this.rMinOrderAmount = rMinOrderAmount;
         this.rDeliveryTime = rDeliveryTime;
-        this.menuList = menuList;
     }
 
 
     // 메소드
+    public void addMenus(List<Menu> menuList) {
+        this.menuList = menuList;
+    }
     public String getrName() {
         return rName;
     }

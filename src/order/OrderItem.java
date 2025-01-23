@@ -18,7 +18,7 @@ public class OrderItem {
 
     // 메소드
     public int getSubTotal() {
-        return menu.getMenuPrice() * getQuantity();
+        return menu.getItemPrice() * getQuantity();
     }
 
     public Menu getMenu() {

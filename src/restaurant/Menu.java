@@ -21,17 +21,6 @@ public class Menu extends MenuItem {
 
 
     // 메소드
-    public int getMenuPrice() {
-        int menuPrice = 0;
-        menuPrice += super.getItemPrice();
-
-        for(Customization customization : customizations){
-            menuPrice += customization.getItemPrice();
-        }
-
-        return menuPrice;
-    }
-
     public String getCategory() {
         return category;
     }

@@ -19,6 +19,7 @@ public class Order {
     private OrderType orderType;               // 주문 타입(배달, 포장)
     private LocalDateTime orderTimeStamp;      // 주문 시간
 
+
     // 생성자
     public Order(long orderId, Customer customer, Restaurant restaurant,
                  OrderItem orderItem, OrderStatus orderStatus, OrderType orderType) {
