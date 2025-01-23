@@ -3,6 +3,9 @@ package order;
 import restaurant.Restaurant;
 import user.Customer;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import static order.OrderStatus.주문대기;
 
 public class Order {
@@ -14,6 +17,7 @@ public class Order {
     private OrderItem orderItem;               // 주문 메뉴
     private OrderStatus orderStatus = 주문대기;  // 주문 상태 default 주문대기
     private OrderType orderType;               // 주문 타입(배달, 포장)
+    private LocalDateTime orderTimeStamp;      // 주문 시간
 
     // 생성자
     public Order(long orderId, Customer customer, Restaurant restaurant,
@@ -24,6 +28,7 @@ public class Order {
         this.orderItem = orderItem;
         this.orderStatus = orderStatus;
         this.orderType = orderType;
+        this.orderTimeStamp = LocalDateTime.now();
     }
 
 
@@ -84,5 +89,10 @@ public class Order {
 
     public void setOrderType(OrderType orderType) {
         this.orderType = orderType;
+    }
+
+    public String getOrderTimeStamp() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        return orderTimeStamp.format(formatter);
     }
 }
