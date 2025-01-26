@@ -10,9 +10,9 @@ public class Cart {
 
 
     // 생성자
-    public Cart() {
+    public Cart(List<CartItem> cartItemList) {
         // 항상 빈 리스트로 초기화
-        this.cartItemList = new ArrayList<>();
+        this.cartItemList = cartItemList;
     }
 
     // 메소드

@@ -1,32 +1,33 @@
 package order;
 
 import restaurant.Menu;
+import restaurant.MenuItem;
 
 public class OrderItem {
 
     // 필드
-    private Menu menu;     // 주문 메뉴
-    private int quantity;  // 주문 메뉴 수량
+    private MenuItem menuItem;     // 주문 메뉴 리스트
+    private int quantity;          // 주문 메뉴 수량
 
 
     // 생성자
-    public OrderItem(Menu menu, int quantity) {
-        this.menu = menu;
+    public OrderItem(MenuItem menuItem, int quantity) {
+        this.menuItem = menuItem;
         this.quantity = quantity;
     }
 
 
     // 메소드
     public int getSubTotal() {
-        return menu.getItemPrice() * getQuantity();
+        return menuItem.getItemPrice() * getQuantity();
     }
 
-    public Menu getMenu() {
-        return menu;
+    public MenuItem getMenuItem() {
+        return menuItem;
     }
 
-    public void setMenu(Menu menu) {
-        this.menu = menu;
+    public void setMenuItem(MenuItem menuItem) {
+        this.menuItem = menuItem;
     }
 
     public int getQuantity() {
