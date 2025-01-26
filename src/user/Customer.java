@@ -188,27 +188,25 @@ public class Customer extends User{
             /// vip 업데이트 필요: 배달비 확인 -> '?' 자식 클래스인데 여기서 확인가능하지(의문)
             // 배달비 추가 과정 구현 필요
 
-            // 만약 VIPCustomer이면 return true니까.
-            VIPCustomer vip = new VIPCustomer(this.getName());
+            // Customer인지 VIPCustomer인지에 따라 오버라이딩된 메소드 사용됨
+            int deliveryFee = getDeliveryFee(restaurant);
 
-            int deliverFee = vip.isDeliveryFree() ? 0 : restaurant.getrDeliveryFee();
-
-            if (deliverFee == 0) {
+            if (deliveryFee == 0) {
                 System.out.println("VIP 혜택으로 배달비가 0원 처리되었습니다.");
             } else {
-                System.out.printf("귀하의 배달비는 %d원입니다.%n", deliverFee);
+                System.out.printf("귀하의 배달비는 %d원입니다.%n", deliveryFee);
             }
 
             // 주문
-            setOrder(restaurant, cart, orderType, deliverFee);
+            setOrder(restaurant, cart, orderType);
         }
     }
 
     public void setTakeoutOrder(Restaurant restaurant, Cart cart, OrderType orderType) {
-        setOrder(restaurant, cart, orderType, 0);
+        setOrder(restaurant, cart, orderType);
     }
 
-    public void setOrder(Restaurant restaurant, Cart cart, OrderType orderType, int deliverFee) {
+    public void setOrder(Restaurant restaurant, Cart cart, OrderType orderType) {
         /// 주문 아이템에 카트 깊은 복사 -> 같은 클래스여야 가능한가?
         List<CartItem> cartItemList = cart.getCartItemList();
         List<OrderItem> orderItemList = new ArrayList<>();
@@ -218,6 +216,8 @@ public class Customer extends User{
             OrderItem orderItem = new OrderItem(cartItem.getMenuItem(), cartItem.getQuantity());
             orderItemList.add(orderItem);
         }
+
+        int deliverFee = restaurant.getrDeliveryFee();
 
         Order order = new Order(this, restaurant, orderItemList,
                                 orderType == 배달
@@ -242,6 +242,9 @@ public class Customer extends User{
         System.out.println("이용해 주셔서 감사합니다.");
         System.out.println("EatsNow!");
         System.out.println("━━━━━━━━━━━━━━━━⊱⋆⊰━━━━━━━━━━━━━━━━");
-        //return null;  //////   업데이트 필요
+    }
+
+    public int getDeliveryFee(Restaurant restaurant) {
+        return restaurant.getrDeliveryFee();
     }
 }

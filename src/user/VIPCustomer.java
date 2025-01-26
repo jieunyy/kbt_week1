@@ -1,6 +1,8 @@
 package user;
 
-public class VIPCustomer extends User{
+import restaurant.Restaurant;
+
+public class VIPCustomer extends Customer {
 
     // 필드
 
@@ -12,7 +14,8 @@ public class VIPCustomer extends User{
 
 
     // 메소드
-    public boolean isDeliveryFree() {
-        return true;
+    @Override
+    public int getDeliveryFee(Restaurant restaurant) {
+        return 0;
     }
 }

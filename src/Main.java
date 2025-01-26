@@ -4,6 +4,7 @@ import restaurant.Customization;
 import restaurant.Menu;
 import restaurant.Restaurant;
 import user.Customer;
+import user.VIPCustomer;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -35,7 +36,9 @@ public class Main {
 
         restaurantList.add(r1);
 
-        Customer customer = new Customer("박지은");
+        //Customer customer = new Customer("박지은");
+        VIPCustomer customer = new VIPCustomer("박지은");
+
 
         // 서비스
         System.out.println("환영합니다. EatsNow!");
@@ -67,6 +70,7 @@ public class Main {
                 break;
             }
 
+            /// /// 흐름을 직관적으로 변경할 필요 있음, 이거 해결하면 vip 부분 확인해보기
             String reply = null;
             while (cart == null) {
                 System.out.println("메뉴를 선택해주세요. (혹은 '뒤로 가기'를 입력하세요.)");
