@@ -81,6 +81,14 @@ public class Order {
         this.orderItemList = orderItemList;
     }
 
+    public int getTotalOrderPrice() {
+        return totalOrderPrice;
+    }
+
+    public void setTotalOrderPrice(int totalOrderPrice) {
+        this.totalOrderPrice = totalOrderPrice;
+    }
+
     public OrderStatus getOrderStatus() {
         return orderStatus;
     }

@@ -15,6 +15,8 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
+import static order.OrderType.배달;
+
 public class Customer extends User{
 
     // 필드
@@ -186,16 +188,27 @@ public class Customer extends User{
             /// vip 업데이트 필요: 배달비 확인 -> '?' 자식 클래스인데 여기서 확인가능하지(의문)
             // 배달비 추가 과정 구현 필요
 
+            // 만약 VIPCustomer이면 return true니까.
+            VIPCustomer vip = new VIPCustomer(this.getName());
+
+            int deliverFee = vip.isDeliveryFree() ? 0 : restaurant.getrDeliveryFee();
+
+            if (deliverFee == 0) {
+                System.out.println("VIP 혜택으로 배달비가 0원 처리되었습니다.");
+            } else {
+                System.out.printf("귀하의 배달비는 %d원입니다.%n", deliverFee);
+            }
+
             // 주문
-            setOrder(restaurant, cart, orderType);
+            setOrder(restaurant, cart, orderType, deliverFee);
         }
     }
 
     public void setTakeoutOrder(Restaurant restaurant, Cart cart, OrderType orderType) {
-        setOrder(restaurant, cart, orderType);
+        setOrder(restaurant, cart, orderType, 0);
     }
 
-    public void setOrder(Restaurant restaurant, Cart cart, OrderType orderType) {
+    public void setOrder(Restaurant restaurant, Cart cart, OrderType orderType, int deliverFee) {
         /// 주문 아이템에 카트 깊은 복사 -> 같은 클래스여야 가능한가?
         List<CartItem> cartItemList = cart.getCartItemList();
         List<OrderItem> orderItemList = new ArrayList<>();
@@ -206,15 +219,21 @@ public class Customer extends User{
             orderItemList.add(orderItem);
         }
 
-        Order order = new Order(this, restaurant, orderItemList, cart.getTotalPrice(), orderType);
+        Order order = new Order(this, restaurant, orderItemList,
+                                orderType == 배달
+                                    ? cart.getTotalPrice() + deliverFee
+                                    : cart.getTotalPrice(),
+                                orderType);
 
         System.out.println("━━━━━━━━━━━⊱주문 내역 확인⊰━━━━━━━━━━━");
         System.out.printf(":::::: 주문 번호   %d%n", order.getOrderId());
         System.out.printf(":::::: 주문 고객   %s%n", order.getCustomer().getName());
         System.out.printf(":::::: 식당       %s%n", order.getRestaurant().getrName());
         System.out.printf(":::::: 수령 방식   %s%n", order.getOrderType());
-        System.out.printf(":::::: 진행 상황   %s%n", order.getOrderStatus());
+        System.out.printf(":::::: 주문 금액   %s%n", order.getTotalOrderPrice());
         System.out.printf(":::::: 주문 시각   %s%n", order.getOrderTimeStamp()); // LocalDateTime 처리
+        System.out.printf(":::::: 진행 상황   %s%n", order.getOrderStatus());
+
         int deliveryTime = order.getRestaurant().getrDeliveryTime();
         int hour = deliveryTime / 60;
         int minutes = deliveryTime % 60;
