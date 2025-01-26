@@ -68,19 +68,19 @@ public class Main {
             }
 
             String reply = null;
-            System.out.println("메뉴를 선택해주세요. (혹은 '뒤로 가기'를 입력하세요.)");
             while (cart == null) {
-                //if (reply.equals("뒤로 가기")) {
-                    /// // 처음으로
-                //}
+                System.out.println("메뉴를 선택해주세요. (혹은 '뒤로 가기'를 입력하세요.)");
                 cart = customer.selectMenu(restaurant, customer);
 
                 if (cart == null) {
-                    System.out.println("메뉴를 다시 선택해주세요. (혹은 '뒤로 가기'를 입력하세요.)");
-                    continue;
+                    System.out.println("식당 조회 화면으로 되돌아 갑니다.");
+                    break;
                 }
 
                 break;
+            }
+            if (cart == null) {
+                continue;
             }
         }
 
