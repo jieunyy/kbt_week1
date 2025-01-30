@@ -26,10 +26,6 @@ public class OrderItem {
         return menuItem;
     }
 
-    public void setMenuItem(MenuItem menuItem) {
-        this.menuItem = menuItem;
-    }
-
     public int getQuantity() {
         return quantity;
     }

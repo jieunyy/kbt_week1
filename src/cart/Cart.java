@@ -11,7 +11,6 @@ public class Cart {
 
     // 생성자
     public Cart(List<CartItem> cartItemList) {
-        // 항상 빈 리스트로 초기화
         this.cartItemList = cartItemList;
     }
 

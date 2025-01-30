@@ -7,7 +7,7 @@ public class Menu extends MenuItem {
 
     // 필드
     private String category;                     // 메뉴 종류
-    private List<Customization> customizations;  // 사이드 메뉴 리스트
+    private List<Customization> customizations = null;  // 사이드 메뉴 리스트
 
 
     // 생성자
@@ -25,15 +25,7 @@ public class Menu extends MenuItem {
         return category;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
     public List<Customization> getCustomizations() {
         return customizations;
-    }
-
-    public void setCustomizations(List<Customization> customizations) {
-        this.customizations = customizations;
     }
 }

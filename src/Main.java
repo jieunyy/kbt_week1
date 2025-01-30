@@ -13,34 +13,95 @@ import java.util.Scanner;
 
 import static order.OrderType.배달;
 import static order.OrderType.포장;
+import static user.CustomerStatus.VIP;
+import static user.CustomerStatus.일반;
 
 public class Main {
     public static void main(String[] args) {
         List<Restaurant> restaurantList = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
 
-        // 식당 초기화
+        /// 식당1
         Restaurant r1 = new Restaurant("맥도날드", "서울시 용산구", "패스트푸트",
-                                        4.8, 3000, 12000, 50);
-
+                                        4.8, 3000, 12000, 50, 20);
         List<Menu> r1MenuList = new ArrayList<>();
-        List<Customization> customizations = Arrays.asList(
+
+        // 사이드 메뉴 존재하는 메뉴
+        List<Customization> r1Customizations = Arrays.asList(
                 new Customization("후렌치 후라이 스몰", 2300, "스낵"),
                 new Customization("후렌치 후라이 미디움", 2800, "스낵"),
                 new Customization("후렌치 후라이 라지", 3300, "스낵")
         );
-
-        Menu r1Menu = new Menu("빅맥", 6300, "버거", customizations);
+        Menu r1Menu = new Menu("빅맥", 6300, "버거", r1Customizations);
         r1MenuList.add(r1Menu);
+        r1.addMenus(r1MenuList);
+
+        // 사이드 메뉴 없는 메뉴
+        List<Customization> r1Customizations2 = new ArrayList<>();
+        Menu r1Menu2 = new Menu("스파이시 상하이 버거 세트", 13300, "버거", r1Customizations2);
+        r1MenuList.add(r1Menu2);
+        r1.addMenus(r1MenuList);
+
+        // 사이드 메뉴 없는 메뉴2
+        List<Customization> r1Customizations3 = new ArrayList<>();
+        Menu r1Menu3 = new Menu("쿼터 파운드 버거 세트", 13800, "버거", r1Customizations2);
+        r1MenuList.add(r1Menu3);
         r1.addMenus(r1MenuList);
 
         restaurantList.add(r1);
 
-        //Customer customer = new Customer("박지은");
-        VIPCustomer customer = new VIPCustomer("박지은");
+
+        ///  식당2 : 추가 작업 필요
+        Restaurant r2 = new Restaurant("동대문 엽기떡볶이", "서울시 용산구", "분식",
+                4.5, 4000, 15000, 70, 15);
+
+        // 사이드 메뉴 없는 메뉴1
+        List<Customization> r2Customizations = new ArrayList<>();
+        List<Menu> r2MenuList = new ArrayList<>(Arrays.asList(
+                new Menu("엽기떡볶이", 14000, "분식", r2Customizations),
+                new Menu("엽기오뎅", 14000, "분식", r2Customizations),
+                new Menu("엽기반반", 14000, "분식", r2Customizations),
+                new Menu("엽기분모자떡볶이", 17000, "분식", r2Customizations)
+        ));
+        r2.addMenus(r2MenuList);
+
+
+        // 사이드 메뉴 존재하는 메뉴
+        List<Customization> r2Customizations2 = Arrays.asList(
+                new Customization("떡 추가", 1000, "메뉴"),
+                new Customization("오뎅 추가", 1000, "메뉴"),
+                new Customization("중국당면 추가", 2500, "메뉴")
+        );
+        Menu r2Menu6 = new Menu("로제떡볶이", 16000, "분식", r2Customizations2);
+        r2MenuList.add(r2Menu6);
+        r2.addMenus(r2MenuList);
+
+        // 사이드 메뉴 없는 메뉴2
+        List<Customization> r2Customizations3 = new ArrayList<>();
+        Menu r2Menu7 = new Menu("엽기밀키트", 18000, "분식", r2Customizations2);
+        r2MenuList.add(r2Menu7);
+        r2.addMenus(r2MenuList);
+
+        restaurantList.add(r2);
+
+        // 로그인
+        Customer customer = null;
+
+        System.out.println("로그인할 계정을 선택해주세요: 일반     VIP");
+        String account = sc.nextLine().trim();
+
+        System.out.println("계정 이름을 입력해주세요.");
+        String accountName = sc.nextLine().trim();
+
+        if (account.equals(일반.toString())) {
+            customer = new Customer(accountName);
+        } else if (account.equalsIgnoreCase(VIP.toString())) {
+            customer = new VIPCustomer(accountName);
+        }
 
 
         // 서비스
+        System.out.printf("안녕하세요, %s님.%n", accountName);
         System.out.println("환영합니다. EatsNow!");
 
         Restaurant restaurant = null;
@@ -49,7 +110,7 @@ public class Main {
             System.out.println("식당 조회");
 
             for (Restaurant res : restaurantList) {
-                System.out.println("━━━━━━━━━━━━━━━━⊱⋆⊰━━━━━━━━━━━━━━━━");
+                System.out.println("━━━━━━━━━━━━━━━━━⊱⊰━━━━━━━━━━━━━━━━");
                 System.out.printf(".•☀ %s%n ☀•.", res.getrName());
                 System.out.printf(".•☀ 평점 %s%n", res.getrRate());
                 System.out.printf(".•☀ %s분 소요%n", res.getrDeliveryTime());
@@ -70,7 +131,7 @@ public class Main {
                 break;
             }
 
-            /// /// 흐름을 직관적으로 변경할 필요 있음, 이거 해결하면 vip 부분 확인해보기
+            /// /// 흐름을 직관적으로 변경할 필요 있음.
             String reply = null;
             while (cart == null) {
                 System.out.println("메뉴를 선택해주세요. (혹은 '뒤로 가기'를 입력하세요.)");

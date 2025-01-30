@@ -53,63 +53,27 @@ public class Order {
         return orderId;
     }
 
-    public void setOrderId(long orderId) {
-        this.orderId = orderId;
-    }
-
     public Customer getCustomer() {
         return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
     }
 
     public Restaurant getRestaurant() {
         return restaurant;
     }
 
-    public void setRestaurant(Restaurant restaurant) {
-        this.restaurant = restaurant;
-    }
-
-    public List<OrderItem> getOrderItemList() {
-        return orderItemList;
-    }
-
-    public void setOrderItemList(List<OrderItem> orderItemList) {
-        this.orderItemList = orderItemList;
-    }
-
     public int getTotalOrderPrice() {
         return totalOrderPrice;
-    }
-
-    public void setTotalOrderPrice(int totalOrderPrice) {
-        this.totalOrderPrice = totalOrderPrice;
     }
 
     public OrderStatus getOrderStatus() {
         return orderStatus;
     }
 
-    public void setOrderStatus(OrderStatus orderStatus) {
-        this.orderStatus = orderStatus;
-    }
-
     public OrderType getOrderType() {
         return orderType;
     }
 
-    public void setOrderType(OrderType orderType) {
-        this.orderType = orderType;
-    }
-
     public String getOrderTimeStamp() {
         return DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").format(orderTimeStamp);
-    }
-
-    public void setOrderTimeStamp(LocalDateTime orderTimeStamp) {
-        this.orderTimeStamp = orderTimeStamp;
     }
 }

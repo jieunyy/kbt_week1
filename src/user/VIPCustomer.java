@@ -4,8 +4,7 @@ import restaurant.Restaurant;
 
 public class VIPCustomer extends Customer {
 
-    // 필드
-
+    // 필드 --
 
     // 생성자
     public VIPCustomer(String name) {

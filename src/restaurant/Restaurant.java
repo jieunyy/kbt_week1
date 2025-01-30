@@ -11,13 +11,14 @@ public class Restaurant {
     private double rRate;         // 식당 평점
     private int rDeliveryFee;     // 배달료
     private int rMinOrderAmount;  // 최소 주문 금액
-    private int rDeliveryTime;    // 배달 시간(배달 선택 시), 변환 후 사용 필요
+    private int rDeliveryTime;    // 배달 시간(배달 선택 시)
+    private int rTakeoutTime;
     private List<Menu> menuList;  // 식당 메뉴
 
 
     // 생성자
     public Restaurant(String rName, String rLocation, String rCategory, double rRate,
-               int rDeliveryFee, int rMinOrderAmount, int rDeliveryTime) {
+               int rDeliveryFee, int rMinOrderAmount, int rDeliveryTime, int rTakeoutTime) {
         this.rName = rName;
         this.rLocation = rLocation;
         this.rCategory = rCategory;
@@ -25,6 +26,7 @@ public class Restaurant {
         this.rDeliveryFee = rDeliveryFee;
         this.rMinOrderAmount = rMinOrderAmount;
         this.rDeliveryTime = rDeliveryTime;
+        this.rTakeoutTime = rTakeoutTime;
     }
 
 
@@ -58,6 +60,10 @@ public class Restaurant {
 
     public int getrDeliveryTime() {
         return rDeliveryTime;
+    }
+
+    public int getrTakeoutTime() {
+        return rTakeoutTime;
     }
 
     public List<Menu> getMenuList() {

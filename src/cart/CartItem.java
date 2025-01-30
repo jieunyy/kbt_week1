@@ -1,6 +1,5 @@
 package cart;
 
-import restaurant.Menu;
 import restaurant.MenuItem;
 
 public class CartItem {
