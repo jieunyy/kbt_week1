@@ -137,7 +137,7 @@ public class Customer extends User{
         return cart;
     }
 
-    public CartItem selectCustomazation(Menu confirmedMenu, CartItem customizationCartItem,Scanner sc) {
+    public CartItem selectCustomazation(Menu confirmedMenu, CartItem customizationCartItem, Scanner sc) {
         List<Customization> customizations = confirmedMenu.getCustomizations();
 
         if(customizations.isEmpty()) {
@@ -216,7 +216,7 @@ public class Customer extends User{
 
             if (reply.equals("네")) {
                 System.out.println("추가 주문을 진행합니다.");
-                Cart newItems = selectMenu(restaurant, this);
+                Cart newItems = selectMenu(restaurant);
 
                 if (newItems != null && newItems.getCartItemList() != null) {
                     cart.getCartItemList().addAll(newItems.getCartItemList());  // 기존 장바구니에 추가
