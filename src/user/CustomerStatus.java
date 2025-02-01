@@ -1,6 +1,6 @@
 package user;
 
-public enum CustomerStatus {
+public enum UserStatus {
     일반,
     VIP;
 }
