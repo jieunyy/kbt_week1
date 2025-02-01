@@ -181,7 +181,7 @@ public class Main {
 
                         // 배달 주문
                         if (orderType.equals("배달")) {
-                            customer.setDeliveryOrder(restaurant, cart, 배달);
+                            customer.setDeliveryOrder(restaurant, cart, 배달, sc);
                             break;
                         } else if (orderType.equals("포장")) {
                             customer.setTakeoutOrder(restaurant, cart, 포장);

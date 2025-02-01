@@ -201,7 +201,7 @@ public class Customer extends User{
     }
 
     // 리턴 타입 고려 필요
-    public void setDeliveryOrder(Restaurant restaurant, Cart cart, OrderType orderType) {
+    public void setDeliveryOrder(Restaurant restaurant, Cart cart, OrderType orderType, Scanner sc) {
         // 최소 주문 금액 확인(배달)
         int minOrderAmount = restaurant.getrMinOrderAmount();
         System.out.printf("최소 주문 금액: %d%n", minOrderAmount);
@@ -209,24 +209,43 @@ public class Customer extends User{
         int cartTotalPrice = cart.getTotalPrice();
         System.out.printf("현재 장바구니 금액: %d%n", cartTotalPrice);
 
-        if (minOrderAmount > cartTotalPrice) {
-            System.out.println("최소 주문 금액에 맞게 주문해주세요.");
-            //return null;
-        } else {
-            System.out.println("주문되었습니다.");
+        while (cartTotalPrice < minOrderAmount) {
+            System.out.println("❗ 현재 주문 금액이 최소 주문 금액보다 적습니다.");
+            System.out.println("추가 주문을 하시겠습니까? 네   아니오");
+            String reply = sc.nextLine().trim();
 
-            // Customer, VIPCustomer 여부에 따라 오버라이딩된 메소드 사용됨
-            int deliveryFee = getDeliveryFee(restaurant);
+            if (reply.equals("네")) {
+                System.out.println("추가 주문을 진행합니다.");
+                Cart newItems = selectMenu(restaurant, this);
 
-            if (deliveryFee == 0) {
-                System.out.println("VIP 혜택으로 배달비가 0원 처리되었습니다.");
+                if (newItems != null && newItems.getCartItemList() != null) {
+                    cart.getCartItemList().addAll(newItems.getCartItemList());  // 기존 장바구니에 추가
+                    cartTotalPrice = cart.getTotalPrice();  // 총 가격 업데이트
+                    System.out.printf("추가 주문 완료! 현재 장바구니 총 금액: %d원%n", cartTotalPrice);
+                } else {
+                    System.out.println("추가 주문이 취소되었습니다.");
+                }
+            } else if (reply.equals("아니오")) {
+                System.out.println("주문을 취소하고 처음으로 돌아갑니다.");
+                return;
             } else {
-                System.out.printf("귀하의 배달비는 %d원입니다.%n", deliveryFee);
+                System.out.println("올바른 입력이 아닙니다. '네' 또는 '아니오'를 입력해주세요.");
             }
-
-            // 주문
-            setOrder(restaurant, cart, orderType);
         }
+
+        System.out.println("주문되었습니다.");
+
+        // Customer, VIPCustomer 여부에 따라 오버라이딩된 메소드 사용됨
+        int deliveryFee = getDeliveryFee(restaurant);
+
+        if (deliveryFee == 0) {
+            System.out.println("VIP 혜택으로 배달비가 0원 처리되었습니다.");
+        } else {
+            System.out.printf("귀하의 배달비는 %d원입니다.%n", deliveryFee);
+        }
+
+        // 주문
+        setOrder(restaurant, cart, orderType);
     }
 
     public boolean isCustomizationNotNUll(CartItem customizationCartItem) {
