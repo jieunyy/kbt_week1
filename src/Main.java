@@ -51,7 +51,7 @@ public class Main {
         restaurantList.add(r1);
 
 
-        ///  식당2 : 추가 작업 필요
+        ///  식당2
         Restaurant r2 = new Restaurant("동대문 엽기떡볶이", "서울시 용산구", "분식",
                 4.5, 4000, 15000, 70, 15);
 

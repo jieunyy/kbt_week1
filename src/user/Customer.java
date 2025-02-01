@@ -91,15 +91,58 @@ public class Customer extends User{
             }
         }
 
-        List<Customization> customizations = null;
         CartItem menuCartItem = null;
         menuCartItem = new CartItem(confirmedMenu, contimedQuantity);
 
         CartItem customizationCartItem = null;
-        customizations = confirmedMenu.getCustomizations();
+
+        customizationCartItem = selectCustomazation(confirmedMenu, customizationCartItem, sc);
+
+        System.out.println("선택된 메뉴는 다음과 같습니다.");
+        System.out.printf("%s %d%n", menuCartItem.getMenuItem().getItemName(), menuCartItem.getQuantity());
+        if (isCustomizationNotNUll(customizationCartItem)) {
+            System.out.printf("%s %d%n", customizationCartItem.getMenuItem().getItemName(), customizationCartItem.getQuantity());
+        }
+
+        int totalPrice = isCustomizationNotNUll(customizationCartItem)
+                ?
+                menuCartItem.getSubTotal() +
+                customizationCartItem.getSubTotal()
+                :
+                menuCartItem.getSubTotal();
+
+        Cart cart = null;
+        while(cart == null) {
+            System.out.printf("총 가격은 %d원입니다. 카트에 담으시겠습니까?: 네  아니오 %n", totalPrice);
+
+            String reply = sc.nextLine().trim();
+
+            if (reply.equals("네")) {
+                System.out.println("장바구니에 추가되었습니다.");
+                List<CartItem> cartItemList = new ArrayList<>();
+                cartItemList.add(menuCartItem);
+                if (isCustomizationNotNUll(customizationCartItem)) {
+                    cartItemList.add(customizationCartItem);
+                }
+                cart = new Cart(cartItemList);
+                break;
+            } else if (reply.equals("뒤로 가기") || reply.equals("아니오")) {
+                System.out.println("처음 화면으로 돌아갑니다.");
+                cart = new Cart(null);
+                break;
+            } else {
+                System.out.println("조건에 맞게 응답해주세요.");
+            }
+        }
+        return cart;
+    }
+
+    public CartItem selectCustomazation(Menu confirmedMenu, CartItem customizationCartItem,Scanner sc) {
+        List<Customization> customizations = confirmedMenu.getCustomizations();
 
         if(customizations.isEmpty()) {
             System.out.println("사이드 메뉴가 없는 메뉴입니다.");
+            return customizationCartItem;
         }
         else {
 
@@ -153,45 +196,8 @@ public class Customer extends User{
             System.out.printf("%s 메뉴가 %d개 선택되었습니다.%n", side, sideQuantity);
             customizationCartItem.setMenuItem(selectedCustomization);
             customizationCartItem.setQuantity(sideQuantity);
+            return customizationCartItem;
         }
-
-        System.out.println("선택된 메뉴는 다음과 같습니다.");
-        System.out.printf("%s %d%n", menuCartItem.getMenuItem().getItemName(), menuCartItem.getQuantity());
-        if (isCustomizationNotNUll(customizationCartItem)) {
-            System.out.printf("%s %d%n", customizationCartItem.getMenuItem().getItemName(), customizationCartItem.getQuantity());
-        }
-
-        int totalPrice = isCustomizationNotNUll(customizationCartItem)
-                ?
-                menuCartItem.getSubTotal() +
-                customizationCartItem.getSubTotal()
-                :
-                menuCartItem.getSubTotal();
-
-        Cart cart = null;
-        while(cart == null) {
-            System.out.printf("총 가격은 %d원입니다. 카트에 담으시겠습니까?: 네  아니오 %n", totalPrice);
-
-            String reply = sc.nextLine().trim();
-
-            if (reply.equals("네")) {
-                System.out.println("장바구니에 추가되었습니다.");
-                List<CartItem> cartItemList = new ArrayList<>();
-                cartItemList.add(menuCartItem);
-                if (isCustomizationNotNUll(customizationCartItem)) {
-                    cartItemList.add(customizationCartItem);
-                }
-                cart = new Cart(cartItemList);
-                break;
-            } else if (reply.equals("뒤로 가기") || reply.equals("아니오")) {
-                System.out.println("처음 화면으로 돌아갑니다.");
-                cart = new Cart(null);
-                break;
-            } else {
-                System.out.println("조건에 맞게 응답해주세요.");
-            }
-        }
-        return cart;
     }
 
     // 리턴 타입 고려 필요
