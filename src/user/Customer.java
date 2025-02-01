@@ -38,7 +38,7 @@ public class Customer extends User{
         return null;
     }
 
-    public Cart selectMenu(Restaurant restaurant, Customer customer) {
+    public Cart selectMenu(Restaurant restaurant) {
         Menu confirmedMenu = null;
         int contimedQuantity = 0;
         Scanner sc = new Scanner(System.in);

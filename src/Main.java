@@ -148,7 +148,7 @@ public class Main {
             String reply = null;
             while (cart == null) {
                 System.out.println("메뉴를 선택해주세요. (혹은 '뒤로 가기'를 입력하세요.)");
-                cart = customer.selectMenu(restaurant, customer);
+                cart = customer.selectMenu(restaurant);
 
                 if (cart == null) {
                     System.out.println("식당 조회 화면으로 되돌아 갑니다.");
