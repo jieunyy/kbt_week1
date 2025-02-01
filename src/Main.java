@@ -87,8 +87,21 @@ public class Main {
         // 로그인
         Customer customer = null;
 
-        System.out.println("로그인할 계정을 선택해주세요: 일반     VIP");
-        String account = sc.nextLine().trim();
+        String account = "";
+        while(account.equals("")) {
+            System.out.println("로그인할 계정을 선택해주세요: 일반     VIP");
+            String accountReply = sc.nextLine().trim();
+
+            if (accountReply.equals("일반")) {
+                account = "일반";
+                break;
+            } else if (accountReply.equalsIgnoreCase("VIP")) {
+                account = "VIP";
+                break;
+            } else {
+                System.out.println("다시 선택해주세요.");
+            }
+        }
 
         System.out.println("계정 이름을 입력해주세요.");
         String accountName = sc.nextLine().trim();
