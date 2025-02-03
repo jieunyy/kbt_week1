@@ -17,8 +17,4 @@ public class Customization extends MenuItem {
     public String getCustomizationType() {
         return customizationType;
     }
-
-    public void setCustomizationType(String customizationType) {
-        this.customizationType = customizationType;
-    }
 }

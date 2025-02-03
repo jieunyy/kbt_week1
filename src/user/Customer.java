@@ -48,7 +48,7 @@ public class Customer extends User{
 
             List<Menu> menuList = restaurant.getMenuList();
             for (Menu menu : menuList) {
-                System.out.printf("\uD80C\uDFF2๋࣭࣪˖ %s  %d%n", menu.getItemName(), menu.getItemPrice());  // 특수 이모티콘입니다!
+                System.out.printf("\uD80C\uDFF2๋࣭࣪˖ <%s> %s  %d%n", menu.getCategory(), menu.getItemName(), menu.getItemPrice());  // 특수 이모티콘입니다!
             }
             System.out.println("━━━━━━━━━━━━━━━━⊱⋆⊰━━━━━━━━━━━━━━━━");
 
@@ -148,7 +148,7 @@ public class Customer extends User{
 
             System.out.println("━━━━━━━━━━━━━⊱사이드메뉴⊰━━━━━━━━━━━━━");
             for (Customization customization : customizations) {
-                System.out.printf(":::::   %s  %d%n", customization.getItemName(), customization.getItemPrice());
+                System.out.printf(":::::<%s>   %s  %d%n", customization.getCustomizationType(), customization.getItemName(), customization.getItemPrice());
             }
             System.out.println("━━━━━━━━━━━━━━━━━⊱⊰━━━━━━━━━━━━━━━━");
 
