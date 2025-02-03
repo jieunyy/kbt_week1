@@ -31,7 +31,7 @@ public class Restaurant {
 
 
     // 메소드
-    public void addMenus(List<Menu> menuList) {
+    public void setMenus(List<Menu> menuList) {
         this.menuList = menuList;
     }
     public String getrName() {

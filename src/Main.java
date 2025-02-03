@@ -34,19 +34,19 @@ public class Main {
         );
         Menu r1Menu = new Menu("빅맥", 6300, "버거 단품", r1Customizations);
         r1MenuList.add(r1Menu);
-        r1.addMenus(r1MenuList);
+        r1.setMenus(r1MenuList);
 
         // 사이드 메뉴 없는 메뉴
         List<Customization> r1Customizations2 = new ArrayList<>();
         Menu r1Menu2 = new Menu("스파이시 상하이 버거 세트", 13300, "버거 세트", r1Customizations2);
         r1MenuList.add(r1Menu2);
-        r1.addMenus(r1MenuList);
+        r1.setMenus(r1MenuList);
 
         // 사이드 메뉴 없는 메뉴2
         List<Customization> r1Customizations3 = new ArrayList<>();
         Menu r1Menu3 = new Menu("쿼터 파운드 버거 세트", 13800, "버거 세트", r1Customizations2);
         r1MenuList.add(r1Menu3);
-        r1.addMenus(r1MenuList);
+        r1.setMenus(r1MenuList);
 
         restaurantList.add(r1);
 
@@ -63,7 +63,7 @@ public class Main {
                 new Menu("엽기반반", 14000, "떡볶이", r2Customizations),
                 new Menu("엽기분모자떡볶이", 17000, "떡볶이", r2Customizations)
         ));
-        r2.addMenus(r2MenuList);
+        r2.setMenus(r2MenuList);
 
 
         // 사이드 메뉴 존재하는 메뉴
@@ -74,13 +74,13 @@ public class Main {
         );
         Menu r2Menu6 = new Menu("로제떡볶이", 16000, "커스텀 떡볶이", r2Customizations2);
         r2MenuList.add(r2Menu6);
-        r2.addMenus(r2MenuList);
+        r2.setMenus(r2MenuList);
 
         // 사이드 메뉴 없는 메뉴2
         List<Customization> r2Customizations3 = new ArrayList<>();
         Menu r2Menu7 = new Menu("엽기밀키트", 18000, "밀키트", r2Customizations2);
         r2MenuList.add(r2Menu7);
-        r2.addMenus(r2MenuList);
+        r2.setMenus(r2MenuList);
 
         restaurantList.add(r2);
 
