@@ -14,7 +14,7 @@ public enum OrderStatus {
 
     // 메서드
     public OrderStatus nextOrderStatus(OrderType orderType, OrderStatus orderStatus) {
-        switch(this) {
+        switch(orderStatus) {
             case 주문대기:
                 return 결제완료;
             case 결제완료:

@@ -1,6 +1,5 @@
 package order;
 
-import restaurant.Menu;
 import restaurant.MenuItem;
 
 public class OrderItem {
@@ -28,9 +27,5 @@ public class OrderItem {
 
     public int getQuantity() {
         return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
     }
 }
