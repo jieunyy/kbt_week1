@@ -282,6 +282,11 @@ public class Customer extends User{
         System.out.printf(":::::: 주문 번호   %d%n", order.getOrderId());
         System.out.printf(":::::: 주문 고객   %s%n", order.getCustomer().getName());
         System.out.printf(":::::: 식당       %s%n", order.getRestaurant().getrName());
+        System.out.printf(":::::: 주문 메뉴   %n");
+        orderItemList = order.getOrderItemList();
+        for(OrderItem orderItem : orderItemList) {
+            System.out.printf("::::::     %s   %n", orderItem.getMenuItem().getItemName());
+        }
         System.out.printf(":::::: 수령 방식   %s%n", order.getOrderType());
         System.out.printf(":::::: 주문 금액   %s%n", order.getTotalOrderPrice());
         System.out.printf(":::::: 주문 시각   %s%n", order.getOrderTimeStamp()); // LocalDateTime 처리

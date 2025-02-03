@@ -73,6 +73,10 @@ public class Order {
         return orderType;
     }
 
+    public List<OrderItem> getOrderItemList() {
+        return orderItemList;
+    }
+
     public String getOrderTimeStamp() {
         return DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").format(orderTimeStamp);
     }
