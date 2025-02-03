@@ -8,12 +8,14 @@ public class User {
     private static final AtomicLong idCounter = new AtomicLong(1);  // 카운터
     private long id;                                                          // 유저 아이디
     private String name;                                                      // 유저 이름
+    private UserStatus userStatus;
 
 
     // 생성자
-    public User(String name) {
+    public User(String name, UserStatus userStatus) {
         this.id = idCounter.getAndIncrement();
         this.name = name;
+        this.userStatus = userStatus;
     }
 
 

@@ -23,8 +23,8 @@ public class Customer extends User{
 
 
     // 생성자
-    public Customer(String name) {
-        super(name);
+    public Customer(String name, UserStatus userStatus) {
+        super(name, userStatus);
     }
 
     // 메소드

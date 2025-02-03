@@ -88,7 +88,7 @@ public class Main {
         Customer customer = null;
 
         String account = "";
-        while(account.equals("")) {
+        while(true) {
             System.out.println("로그인할 계정을 선택해주세요: 일반     VIP");
             String accountReply = sc.nextLine().trim();
 
@@ -107,9 +107,9 @@ public class Main {
         String accountName = sc.nextLine().trim();
 
         if (account.equals(일반.toString())) {
-            customer = new Customer(accountName);
+            customer = new Customer(accountName, 일반);
         } else if (account.equalsIgnoreCase(VIP.toString())) {
-            customer = new VIPCustomer(accountName);
+            customer = new VIPCustomer(accountName, VIP);
         }
 
 

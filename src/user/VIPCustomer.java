@@ -7,8 +7,8 @@ public class VIPCustomer extends Customer {
     // 필드 --
 
     // 생성자
-    public VIPCustomer(String name) {
-        super(name);
+    public VIPCustomer(String name, UserStatus userStatus) {
+        super(name, userStatus);
     }
 
 
